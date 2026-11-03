@@ -165,6 +165,7 @@ const app=document.getElementById('app');
 const fecha=(d,k)=>new Date(2026,10,d+7*k).toLocaleDateString('es-PE',{day:'numeric',month:'long'});
 const corto=(t)=>t.start;
 
+//<li><b>25%</b> Desc Colaborador UMA</li><li><b>15%</b> Desc Familiar UMA</li></ul>
 function home(){
   app.innerHTML=`<div class="view">
   <section class="hero"><div class="container">
@@ -172,8 +173,6 @@ function home(){
     <p>Inscríbete en nuestros talleres virtuales de sólo 4 sesiones, asistiendo virtualmente una vez por semana. Elige el día que te acomode y revisa el detalle de cada uno.</p>
     <ul class="facts"><li>Inicio <b>${INFO.inicio}</b></li><li><b>${INFO.ses}</b> sesiones</li><li>Modalidad <b>${INFO.mod}</b></li>
     <li>Inversión Público General <b>${INFO.preciopg}</b></li>
-    <li><b>25%</b> Desc Colaborador UMA</li>
-    <li><b>15%</b> Desc Familiar UMA</li></ul>
   </div></section>
   <section class="week"><div class="container">
     <div class="row">${T.map(x=>`<div class="col-md-6 col-lg-4"><a class="card-t" href="#${x.id}">
@@ -185,6 +184,7 @@ function home(){
   document.title='Talleres Extracurriculares UMA';
 }
 
+//<br> Colaborador UMA ${INFO.preciocu} <br> Familiar UMA ${INFO.preciofu}
 function detail(i){
   const x=T[i],prev=T[i-1],next=T[i+1];
   app.innerHTML=`<div class="view">
@@ -196,7 +196,7 @@ function detail(i){
     <div class="col-md-6 col-lg-3"><div class="box"><small>Ponente</small><b>${x.p}</b></div></div>
     <div class="col-md-6 col-lg-3"><div class="box"><small>Horario</small><b>${x.hora}</b></div></div>
     <div class="col-md-6 col-lg-3"><div class="box"><small>Frecuencia | Modalidad</small><b>Todos los ${x.dia.toLowerCase()} <br> ${INFO.ses} sesiones <br> ${INFO.mod}</b></div></div>
-    <div class="col-md-6 col-lg-3"><div class="box"><small>Inversión</small><b>Público General ${INFO.preciopg} <br> Colaborador UMA ${INFO.preciocu} <br> Familiar UMA ${INFO.preciofu}</b></div></div>
+    <div class="col-md-6 col-lg-3"><div class="box"><small>Inversión</small><b>Público General ${INFO.preciopg}</b></div></div>
   </div>
   <h2 class="sec-title">Fechas de las sesiones</h2>
   <ul class="chips">${[0,1,2,3].map(k=>`<li>Sesión ${k+1}: ${x.dia} ${fecha(x.start,k)}</li>`).join('')}</ul>
