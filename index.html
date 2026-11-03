@@ -112,7 +112,7 @@ footer .container{display:flex;flex-wrap:wrap;gap:.5rem 2rem;justify-content:spa
 <footer><div class="container"><span>Universidad María Auxiliadora | Facultad de Ingeniería, Negocios y Derecho</span><span>#CambiaTuHistoria | uma.edu.pe</span></div></footer>
 
 <script>
-const INFO={inicio:'9 de noviembre',ses:4,mod:'Virtual',precio:'S/. 360',cred:'02 créditos académicos extracurriculares'};
+const INFO={inicio:'9 de noviembre',ses:4,mod:'Virtual',preciopg:'S/. 360', preciocu:' S/. 270', preciofu:' S/. 306',cred:'02 créditos académicos extracurriculares'};
 const FORM="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=cK3pz2eD7U6de06H_DXfJadUYVnaPepBsYGYGOJSdRxUQUxFMzVGRlhEOUo2UVZMU0hBV0lNMTg2MC4u";
 const FLY={
   general:"img/todo.png",
@@ -170,7 +170,10 @@ function home(){
   <section class="hero"><div class="container">
     <h1>Talleres extracurriculares</h1>
     <p>Inscríbete en nuestros talleres virtuales de sólo 4 sesiones, asistiendo virtualmente una vez por semana. Elige el día que te acomode y revisa el detalle de cada uno.</p>
-    <ul class="facts"><li>Inicio: <b>${INFO.inicio}</b></li><li><b>${INFO.ses}</b> sesiones</li><li>Modalidad <b>${INFO.mod}</b></li><li>Inversión <b>${INFO.precio}</b></li></ul>
+    <ul class="facts"><li>Inicio <b>${INFO.inicio}</b></li><li><b>${INFO.ses}</b> sesiones</li><li>Modalidad <b>${INFO.mod}</b></li>
+    <li>Inversión Público General <b>${INFO.preciopg}</b></li>
+    <li><b>25%</b> Desc Colaborador UMA</li>
+    <li><b>15%</b> Desc Familiar UMA</li></ul>
   </div></section>
   <section class="week"><div class="container">
     <div class="row">${T.map(x=>`<div class="col-md-6 col-lg-4"><a class="card-t" href="#${x.id}">
@@ -192,8 +195,8 @@ function detail(i){
   <section class="stats"><div class="container"><div class="row">
     <div class="col-md-6 col-lg-3"><div class="box"><small>Ponente</small><b>${x.p}</b></div></div>
     <div class="col-md-6 col-lg-3"><div class="box"><small>Horario</small><b>${x.hora}</b></div></div>
-    <div class="col-md-6 col-lg-3"><div class="box"><small>Frecuencia</small><b>Todos los ${x.dia.toLowerCase()} | ${INFO.ses} sesiones</b></div></div>
-    <div class="col-md-6 col-lg-3"><div class="box"><small>Modalidad e inversión</small><b>${INFO.mod} | ${INFO.precio}</b></div></div>
+    <div class="col-md-6 col-lg-3"><div class="box"><small>Frecuencia | Modalidad</small><b>Todos los ${x.dia.toLowerCase()} <br> ${INFO.ses} sesiones <br> ${INFO.mod}</b></div></div>
+    <div class="col-md-6 col-lg-3"><div class="box"><small>Inversión</small><b>Público General ${INFO.preciopg} <br> Colaborador UMA ${INFO.preciocu} <br> Familiar UMA ${INFO.preciofu}</b></div></div>
   </div>
   <h2 class="sec-title">Fechas de las sesiones</h2>
   <ul class="chips">${[0,1,2,3].map(k=>`<li>Sesión ${k+1}: ${x.dia} ${fecha(x.start,k)}</li>`).join('')}</ul>
