@@ -101,6 +101,12 @@ footer .container{display:flex;flex-wrap:wrap;gap:.5rem 2rem;justify-content:spa
 .view{animation:in .35s ease}
 @keyframes in{from{opacity:0}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+.modal-content{background:var(--surface);color:var(--text);border:0;border-radius:16px;overflow:hidden}
+.modal-header-uma{background:var(--wine);color:#fff;padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.modal-header-uma h2{font-size:1.5rem;margin:0}
+.modal-header-uma .btn-close{filter:invert(1) grayscale(1) brightness(2);opacity:.9}
+.modal-body-uma{padding:1.5rem;font-size:1.1rem}
+.modal-footer-uma{padding:0 1.5rem 1.5rem;display:flex;justify-content:flex-end}
 </style>
 </head>
 <body>
@@ -110,6 +116,14 @@ footer .container{display:flex;flex-wrap:wrap;gap:.5rem 2rem;justify-content:spa
 </div></header>
 <main id="app" tabindex="-1"></main>
 <footer><div class="container"><span>Universidad María Auxiliadora | Facultad de Ingeniería, Negocios y Derecho</span><span>#CambiaTuHistoria | uma.edu.pe</span></div></footer>
+
+<div class="modal fade" id="modalCerrado" tabindex="-1" aria-labelledby="modalCerradoTitulo" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+    <div class="modal-header-uma"><h2 id="modalCerradoTitulo">Inscripciones cerradas</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button></div>
+    <div class="modal-body-uma">Ya iniciamos las sesión del taller.<br>Muy pronto te estaremos informando sobre nuevas fechas.</div>
+    <div class="modal-footer-uma"><button type="button" class="btn" data-bs-dismiss="modal">Entendido</button></div>
+  </div></div>
+</div>
 
 <script>
 const INFO={inicio:'9 de noviembre',ses:4,mod:'Virtual',preciopg:'S/. 360', preciocu:' S/. 270', preciofu:' S/. 306',cred:'02 créditos académicos extracurriculares'};
@@ -142,7 +156,7 @@ const T=[
  ['Dinamismo visual',['Transiciones y efectos','Textos y subtítulos animados','Velocidad y fotogramas clave']],
  ['IA en la edición',['Guion y subtítulos automáticos','Quitar fondo y mejorar imagen','Voz y audio con IA']],
  ['Video para emprendedores',['Formatos para redes sociales','Identidad de marca','Exportación y publicación']]]},
-{id:'powerbi',dia:'Jueves',start:12,hora:'6:00 p.m. a 9:30 p.m.',t:'Analítica de datos con Power BI + IA',s:'Creación de dashboard para análisis de ventas',p:'Jhon Robinson Rojas Díaz',
+{id:'powerbi',dia:'Jueves',start:12,hora:'5:00 p.m. a 8:30 p.m.',t:'Analítica de datos con Power BI + IA',s:'Creación de dashboard para análisis de ventas',p:'Jhon Robinson Rojas Díaz',
  logro:'Al finalizar, construyes un dashboard de ventas en Power BI que apoya la toma de decisiones.',
  ses:[['Introducción a Power BI',['Conceptos de inteligencia de negocios','Interfaz de Power BI','Conexión a fuentes de datos']],
  ['Transformación de datos',['Power Query y limpieza de datos','Modelo de datos','Relaciones entre tablas']],
@@ -235,6 +249,14 @@ function route(){
 window.addEventListener('hashchange',route);
 document.getElementById('logo').addEventListener('click',e=>{e.preventDefault();location.hash=''; if(!location.hash)route();});
 route();
+
+// Todos los botones "Inscríbete" abren el modal de inscripciones cerradas
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href*="forms.cloud.microsoft"]');
+  if(!a)return;
+  e.preventDefault();
+  bootstrap.Modal.getOrCreateInstance(document.getElementById('modalCerrado')).show();
+});
 </script>
 </body>
 </html>
